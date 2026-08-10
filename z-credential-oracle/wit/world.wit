@@ -1,0 +1,42 @@
+/// z-credential-oracle — Privacy-preserving credential verification.
+///
+/// Imports required host capabilities:
+///   - tenant-context: tenant DID, cluster timestamp
+///   - logging:        debug / info / error lines
+///   - kv-store:       reads user income data from private KV map
+///
+/// Two exported functions:
+///   - verify-age:    proves user is over a minimum age without revealing DOB
+///   - verify-income: proves user meets income threshold without revealing amount
+///
+/// DOB is resolved via {{profile.date_of_birth}} inside the enclave.
+/// Income is read from the user's private KV map z:<tid>:userdata.
+/// Raw values never leave the enclave — only verdicts are returned.
+package z:credential-oracle@0.1.0;
+
+world credential-oracle {
+    import host:tenant/tenant-context@1.0.0;
+    import host:interfaces/logging@2.1.0;
+    import host:interfaces/kv-store@2.1.0;
+    import host:interfaces/http-with-placeholders@2.1.0;
+
+    export contracts;
+}
+
+interface contracts {
+    record generic-input {
+        input:        option<list<u8>>,
+        user-profile: option<list<u8>>,
+        context:      option<list<u8>>,
+    }
+
+    /// Proves user is over minimum age without revealing date of birth.
+    /// Input  (JSON): { "min_age": 18 }
+    /// Output (JSON): { "verified": true, "attribute": "age_over_18", "checked_at": "2026-08-10" }
+    verify-age: func(req: generic-input) -> result<list<u8>, string>;
+
+    /// Proves user meets income threshold without revealing actual income.
+    /// Input  (JSON): { "threshold": 50000 }
+    /// Output (JSON): { "approved": true, "tier": "A", "meets_threshold": true }
+    verify-income: func(req: generic-input) -> result<list<u8>, string>;
+}

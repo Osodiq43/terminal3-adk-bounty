@@ -1,5 +1,7 @@
 node_modules/
-*.env
-.env
 target/
+.env
+*.env
 .env.local
+out.txt
+output.txt
