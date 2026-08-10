@@ -1,9 +1,5 @@
 # Terminal3 ADK Bounty Submission
 
-**Submitted by:** Osodiq43
-**Tenant DID:** `did:t3n:614fa4a09497c8904cb6f399d2eb4e3b5ffa2b54`
-**Submission Doc:** [Google Doc link here]
-
 ## What this repo contains
 
 ### quickstart/
@@ -36,8 +32,6 @@ npx tsx quickstart.ts
 
 ## Bugs found
 
-9 bugs documented in the submission Google Doc, including two Critical bugs:
+9 bugs documented in the submission, including two Critical bugs:
 - Bug #6: Entire maps and contracts SDK API broken due to wrong RPC field names
 - Bug #8: agentAuthUpdate server handler crashes on every call
-
-See the full submission document for details, screenshots, and workarounds.
