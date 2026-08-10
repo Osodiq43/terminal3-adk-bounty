@@ -29,9 +29,3 @@ npm install
 export T3N_API_KEY=your_api_key_here
 npx tsx quickstart.ts
 ```
-
-## Bugs found
-
-9 bugs documented in the submission, including two Critical bugs:
-- Bug #6: Entire maps and contracts SDK API broken due to wrong RPC field names
-- Bug #8: agentAuthUpdate server handler crashes on every call
