@@ -5,3 +5,4 @@ target/
 .env.local
 out.txt
 output.txt
+node_modules/
